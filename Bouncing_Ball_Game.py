@@ -3,7 +3,6 @@ import pygame
 from pygame.locals import *
 import sys
 import random
-import os
 
 # 2 - Define constants
 BLACK = (0, 0, 0)
@@ -21,16 +20,7 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("Click The Ball Game")
  
 # 4 - Load assets: image(s).
-script_dir = os.path.dirname(os.path.abspath(__file__))
-ball_path = os.path.join(script_dir, 'images', 'ball.png')
-
-try: 
-    ballImage = pygame.image.load(ball_path)
-except FileNotFoundError:
-    print(f"Error: Cannot find file at {ball_path}")
-    pygame.quit()
-    sys.exit()
-
+ballImage = pygame.image.load('images/ball.png')
 font = pygame.font.SysFont(None, 36)
 bigFont = pygame.font.SysFont(None, 48)
 
@@ -96,6 +86,7 @@ while True:
     # 10 - Draw the window elements
     if not gameOver:
         window.blit(ballImage, ballRect)
+
         scoreText = font.render(f"Score: {score}", True, WHITE)
         window.blit(scoreText, (10, 10))
     else:
